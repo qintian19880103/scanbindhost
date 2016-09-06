@@ -18,9 +18,9 @@ def curl(host,ip):
     url = 'https://'+ip+'/'
     print url
     request = urllib2.Request(url)
-    request.add_header('User-Agent', 'google')
+    request.add_header('User-Agent', 'baidu')
     request.add_header('HOST', host)
-    request.add_header('X-Forwarded-For', '172.31.22.1')
+    request.add_header('X-Forwarded-For', '8.8.8.8')
     start_time = time.time()
     try:
         response = urllib2.urlopen(request,timeout=10)
