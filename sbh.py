@@ -1,17 +1,32 @@
 import urllib,urllib2,time,sys,threading,time
 
-class timer(threading.Thread): #The timer class is derived from the class threading.Thread  
+class timer(threading.Thread):
     def __init__(self, host, ip):  
         threading.Thread.__init__(self)  
         self.host = host  
         self.ip = ip  
         self.thread_stop = False  
    
-    def run(self): #Overwrite run() method, put what you want the thread do here  
+    def run(self): 
         curl(self.host,self.ip)
     def stop(self):  
         self.thread_stop = True  
          
+
+
+class file_oper:
+    def __int__(self,filename):
+        self.file_handle = open(filename,"ab+")
+        
+    def __del__(self):
+        self.file_handle.close()
+    def read_ip(self):
+        return self.file_handle.readlines()
+    def write_log(self,log):
+        
+
+
+
 
 
 def curl(host,ip):
@@ -30,8 +45,8 @@ def curl(host,ip):
     #print response.read()    
     #print host +' bind ip : ' + ip
     if response.read().find('baidu.com') >= 0:
-        file_name = open("c:\\windows\\temp\\1.txt", mode='ab+')
-        #file_name = open("/tmp/succeed", mode='ab+')
+        #file_name = open("c:\\windows\\temp\\1.txt", mode='ab+')
+        file_name = open("/tmp/succeed", mode='ab+')
         file_name.write(host +' bind ip : ' + ip +'\r\n')
         file_name.close()        
     sys.exit(0)
